@@ -37,13 +37,7 @@ void main(string[] args) {
 		return;
 	}
 
-	HttpServer httpServer = new HttpServer("0.0.0.0", port, totalCPUs-1);
-
-	version(Posix) {
-		httpServer.onProcessorCreate(delegate HttpProcessor (TcpStream client) {
-			return new DemoProcessor(client);
-		});
-	}
+	auto httpServer = new HttpServer!(DemoProcessor)("0.0.0.0", port, totalCPUs-1);
 
 	writefln("listening on http://%s", httpServer.bindingAddress.toString());
 	httpServer.start();
