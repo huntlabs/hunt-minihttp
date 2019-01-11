@@ -10,14 +10,14 @@ import core.thread, core.atomic;
 import http.Parser;
 import core.time;
 
-import hunt.datetime;
+import hunt.util.DateTime;
 import hunt.logging;
 import hunt.io;
 
 void benchmark(int number = 100) {
     import core.time;
     import std.datetime;
-    import hunt.datetime;
+    import hunt.util.DateTime;
 
     string str = `GET /plaintext HTTP/1.1
 cache-control: no-cache
