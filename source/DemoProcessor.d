@@ -1,5 +1,7 @@
 module DemoProcessor;
 
+version(Posix):
+
 import hunt.io;
 import http.Processor;
 import stdx.data.json;
