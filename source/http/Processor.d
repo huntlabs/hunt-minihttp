@@ -9,6 +9,7 @@ import core.stdc.stdlib;
 import core.thread, core.atomic;
 import http.Parser;
 
+import hunt.collection.ByteBuffer;
 import hunt.util.DateTime;
 import hunt.logging;
 import hunt.io;
@@ -58,12 +59,12 @@ public:
 	}
 
 	void run() {
-		client.onDataReceived((const ubyte[] data) {
+		client.onDataReceived((ByteBuffer buffer) {
 			version(HUNT_METRIC) {
 				debug trace("start hadling session data ...");
 				startTime = MonoTime.currTime;
             } 
-			parser.execute(data);
+			parser.execute(cast(ubyte[]) buffer.getRemaining());
 		})
 		.onClosed(() {
 			notifyClientClosed();

@@ -5,7 +5,7 @@ echo "Usage: ./bench.sh Name plaintext 127.0.0.1 8080"
 let max_threads=$(cat /proc/cpuinfo | grep processor | wc -l)
 accept="text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
 duration=15
-levels=(512 512 512 512 512)
+levels=(256 1024 4096 16384)
 max_concurrency=512
 
 if [ -n "$1" ]; then
